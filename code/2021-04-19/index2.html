@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<select id="opt" onchange="optionChange(this.value)"> //this가 that으로 들어간다
+    <option value="opt1">옵션1</option>
+    <option value="opt2">옵션2</option>
+    <option value="opt3">옵션3</option>
+</select>
+<!-- selected우리가 만들어준건데.innerText 어떻게 사용한건가? -->
+<div id="selected"></div> 
+<script>
+    function optionChange(that){ //that은 select 박스전체
+        console.log('that', that); //문자열  //that변수
+        console.log('optionChange');
+
+        var selected = document.getElementById('selected');
+        console.log(selected.innerText);
+        selected.innerText = that;
+    }
+</script>
+</body>
+</html>

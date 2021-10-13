@@ -1,0 +1,119 @@
+html,body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7em;
+  font-size: 26px;
+}
+
+ul {
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#main-container {
+  display: flex;
+
+}
+
+
+.checkbox-container {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  width: 250px;
+  font-size: 16px;
+  background-color: #dddddd;
+
+}
+
+.checkbox-container h1 {
+  font-size: 22px;
+  padding-left: 5%;
+
+}
+
+.checkbox {
+  width: 100%;
+  font-size: 16px;
+  padding-left: 10%;
+}
+
+.delete-btn {
+  padding-left: 42%;
+}
+.column-1 {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+.row-1 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.row-2 {
+  display: flex;
+  position: relative;
+  width: 1400px;
+  height: 100%;
+  flex-wrap: wrap;
+  left: 250px;
+}
+
+.row-2 div {
+  display: flex;
+  width: 31%;
+  padding: 1%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row-2 img {
+  width: 100%;
+}
+
+.row-2 h1 {
+  font-size: 16px;
+  line-height: 1.5;
+  height: 60px;
+}
+
+.row-2 h2 {
+  display: flex;
+  color: red;
+  justify-content: flex-end;
+  padding-right: 3%;
+  font-size: 20px;
+}
+
+.column-2 {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  width: 250px;
+  right: 0px;
+  align-items: center;
+}
+
+.column-2 div {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.column-2 img {
+  width: 50%;
+}
+
+.column-2 h1 {
+  display: flex;
+  font-size: 12px;
+}

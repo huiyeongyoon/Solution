@@ -1,0 +1,129 @@
+.main-container {
+  display: flex;
+  margin: 5% 10% 0 10%;
+}
+
+.column-1 {
+  width: 50%;
+}
+.row-1 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+}
+
+.row-1 img {
+  width: 100%;
+  height: 50%;
+}
+
+.row-2 {
+  padding-left: 3%;
+  width: 100%;
+
+}
+.row-2 p {
+  margin: 0px;
+}
+.row-2 h1 {
+  font-size: 22px;
+  padding-bottom: 5%;
+}
+
+.border-line {
+  border-bottom: 1px solid
+}
+.row-2 h2 {
+  font-size: 18px;
+  color: red;
+  padding-bottom: 10%;
+}
+.row-2 p {
+  padding-bottom: 10%;
+}
+
+.inline p{
+  display: inline-block;
+}
+
+.row-3 {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  background-color: #f3f3f3;
+}
+
+.row-3 div {
+  width: 100%;
+}
+.row-3 img {
+  display: flex;
+  padding: 20px;
+  height: 150px;
+  width: 81px;
+}
+
+
+.row-4 {
+  display: flex;
+  width: 100%;
+  height: 300px;
+  background-color: yellow;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 40%;
+}
+
+
+.button-box {
+  display: flex
+}
+/*화살표 */
+
+.arrow-image-box {
+  display: flex;
+  background-color: black;
+  width: 200px;
+  height: 200px;
+}
+
+.arrow {
+  display: flex;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  padding: 7px;
+  align-content: center;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+
+}
+
+.right_p{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.left_p{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+

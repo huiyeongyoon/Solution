@@ -1,0 +1,19 @@
+let productList = ["냉장고", "선풍기", "TV", "노트북", "세탁기", "에어컨"];
+let bought = ["노트북", "TV", "에어컨"];
+let inShop = "";
+
+for (let i = 0; i < productList.length; i++) {
+    let flag = false;
+    for (let j = 0; j < bought.length; j++) {
+        if (productList[i] === bought[j]) {
+            flag = true;
+            break;
+        }
+    }
+
+    if (!flag) {
+        inShop += ' ' + productList[i];
+    }
+
+}
+console.log(inShop);

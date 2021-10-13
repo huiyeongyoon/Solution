@@ -1,0 +1,9 @@
+#cardBox{
+    text-align: center;
+    margin: 10%;
+}
+
+.randomCard {
+    width: 18%;
+    height: 10%;
+}

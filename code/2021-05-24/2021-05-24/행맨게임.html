@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>행맨!</title>
+</head>
+<body>
+<h1>행맨!</h1>
+<script>
+    const words = [
+        "javascript",
+        "monkey",
+        "amazing",
+        "pancake"
+    ];
+    //임의의 단어를 고른다
+    const word = words[Math.floor(Math.random() * words.length)];
+
+    //정답 배열을 설정한다
+    let answerArray = [];
+    for (let i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+    }
+    let remainingLetters = word.length;
+
+    // 게임 메인 반복문
+    while (remainingLetters > 0) {
+        // 플레이어에게 현재 상태를 알려준다.
+        alert(answerArray.join(" "));
+
+        let guess = prompt("글자를 입력하세요. 취소를 누르면 게임을 멈춥니다.");
+        if(guess === null) {
+            //게임 메인 반복문을 빠져나감
+            break;
+        } else if (guess.length !== 1) {
+            alert("한글자만 입력해");
+        } else {
+            //입력한 글자를 사용해 게임상태를 업데이트한다.
+            for (let i = 0; i < word.length; i++) {
+                if(word[i] === guess) {
+                    answerArray[i] = guess;
+                    remainingLetters--;
+                }
+            }
+        }
+        //게임 반복문 끝
+    }
+
+    alert(answerArray.join(" "));
+    alert("잘했어" + word + "입니다.");
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    width: 540px;
+    border: 1px solid black;
+}
+
+.box {
+    /*background-color: red;*/
+    width: 180px;
+    height: 180px;
+    box-sizing: border-box;
+    border: 1px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blue {
+    color: blue;
+    font-size: 7rem;
+}
+
+.red{
+    color: red;
+    font-size: 7rem;
+}
+

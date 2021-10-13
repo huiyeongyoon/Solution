@@ -1,0 +1,21 @@
+//인풋된 문자열과 문자열"1부터9까지를 비교한다"
+
+
+function solution(s) {
+    let answer = false;
+    const number = "1234567890";
+    let  result = "";
+
+    for (let i = 0; i < s.length; i++) {
+        for (let j = 0; j < number.length; j++) {
+            result = number[j];
+        }
+        if(s[i] === result) {
+            answer = true;
+        }
+    }
+
+    return answer;
+}
+
+console.log(solution("1234"));

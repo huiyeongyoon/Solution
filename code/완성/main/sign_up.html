@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/sign_up.css">
+</head>
+<body>
+<header>
+</header>
+<div id="logo">
+</div>
+<section id="container">
+  <h2>회원가입</h2>
+  <form class="sign_up_form" action="index.html" method="post" name="sign_up_form">
+    <ul>
+      <li><span>ID</span><span class="inputBox1 inputBox6"></span><input class="sign_up_id" name="sign_up_id" type="text" placeholder="아이디" title="아이디"></li>
+      <li><span>PASSWORD</span><span class="inputBox2 inputBox7"></span><input class="sign_up_password" name="sign_up_password" type="text" placeholder="비밀번호" title="비밀번호"></li>
+      <li><span>PASSWORD 확인</span><span class="inputBox3 inputBox8"></span><input class="sign_up_password_confirm" name="sign_up_password_confirm" type="text" placeholder="비밀번호확인" title="비밀번호확인"></li>
+      <li><span>E-MAIL</span><span class="inputBox4 inputBox9"></span><input class="sign_up_email" name="sign_up_email" type="email" placeholder="E-MAIL" title="E-MAIL"></li>
+      <li><span>생년월일</span><span class="inputBox5 inputBox10"></span><input class="sign_up_birth" name="sign_up_birth" type="text" placeholder="생년월일" title="E-생년월일"></li>
+      <li><button type=submit class="big_btn">회원가입</button></li>
+      <li><button type="button" class="big_btn go_back">뒤로가기</button></li>
+    </ul>
+  </form>
+</section>
+
+<script>
+
+  const $inputBox1 = document.querySelector('.inputBox1');
+  const $inputBox2 = document.querySelector('.inputBox2');
+  const $inputBox3 = document.querySelector('.inputBox3');
+  const $inputBox4 = document.querySelector('.inputBox4');
+  const $inputBox5 = document.querySelector('.inputBox5');
+  const $inputBox6 = document.querySelector('.inputBox6');
+  const $inputBox7 = document.querySelector('.inputBox7');
+  const $inputBox8 = document.querySelector('.inputBox8');
+  const $inputBox9 = document.querySelector('.inputBox9');
+  const $inputBox10 = document.querySelector('.inputBox10');
+  const $sign_up_form = document.querySelector('.sign_up_form');
+  const $sign_up_id = document.querySelector('.sign_up_id');
+  const $signUpPassword = document.querySelector('.sign_up_password');
+  const $signUpPasswordConfirm = document.querySelector('.sign_up_password_confirm');
+  const $signUpEmail = document.querySelector('.sign_up_email');
+  const $signUpBirth = document.querySelector('.sign_up_birth');
+  const $goIndex = document.querySelector('.go_back');
+
+  // 아이디체크
+  // 1.중복되는 아이디 인가? (완료)
+  // 2.특수문자 영어 숫자만 가능한가?
+  // 3.한글이랑 영어가 합쳐진다면?
+  // 4.6글자이상인가? (완료)
+  // 5.공백불가
+
+  function isIncludes(idValue, target) {
+    for (let i = 0; i < target.length; i++) {
+      if (idValue.includes(target[i])) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
+  function isNotIncludes(idValue, target) {
+    for (let i = 0; i < idValue.length; i++) {
+      if (!target.includes(idValue[i])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  // function possibleForm(emailValue, target) {
+  //   console.log(emailValue);
+  //   console.log(target);
+  //   for (let i = 0; i < emailValue.length; i++) {
+  //     if(emailValue === '@') {
+  //       console.log(emailValue);
+  //       console.log(target);
+  //       if (emailValue.includes(target[i])) {
+  //         return false;
+  //       }
+  //     }
+  //   }
+  //
+  //   return true;
+  // }
+
+
+  // 아이디 벨류값 체크
+  function isConfirmId(idValue) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const number = '0123456789';
+    const all = alphabet + number;
+
+    if (idValue.length < 6) {
+      $inputBox1.classList.add('inputBoxRed');
+      $inputBox1.classList.remove('inputBoxBlue');
+      $inputBox1.textContent = '아이디는 6글자이상만 사용가능합니다';
+      return false
+    }
+
+    if (idValue === 'name2960') {
+      $inputBox1.classList.add('inputBoxRed');
+      $inputBox1.classList.remove('inputBoxBlue');
+      $inputBox1.textContent = '중복된 아이디입니다';
+      return false;
+    }
+
+    if (!isIncludes(idValue, alphabet)) {
+      $inputBox1.classList.add('inputBoxRed');
+      $inputBox1.classList.remove('inputBoxBlue');
+      $inputBox1.textContent = '영문 숫자만 사용 가능합니다';
+      return false
+    }
+    if (!isIncludes(idValue, number)) {
+      $inputBox1.classList.add('inputBoxRed');
+      $inputBox1.classList.remove('inputBoxBlue');
+      $inputBox1.textContent = '영문 숫자만 사용 가능합니다';
+      return false
+    }
+    if (!isNotIncludes(idValue, all)) {
+      $inputBox1.classList.add('inputBoxRed');
+      $inputBox1.classList.remove('inputBoxBlue');
+      $inputBox1.textContent = '포함되면 안되는 문자가 있습니다';
+      return false;
+    }
+
+    return true;
+  }
+
+  function isConfirmPassword(passwordValue) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const number = '0123456789';
+    const specialCharacter = '!@#$%^&*()_+?*,./\'';
+    const all = alphabet + number + specialCharacter;
+
+
+    if (passwordValue.length < 6) {
+      $inputBox2.classList.add('inputBoxRed');
+      $inputBox3.classList.add('inputBoxRed');
+      $inputBox2.classList.remove('inputBoxBlue');
+      $inputBox3.classList.remove('inputBoxBlue');
+      $inputBox2.textContent = '비밀번호는 6글자 이상만 가능합니다';
+      $inputBox3.textContent = '비밀번호는 6글자 이상만 가능합니다';
+      return false;
+    }
+
+    if (!isIncludes(passwordValue, specialCharacter)) {
+      $inputBox2.classList.add('inputBoxRed');
+      $inputBox3.classList.add('inputBoxRed');
+      $inputBox2.classList.remove('inputBoxBlue');
+      $inputBox3.classList.remove('inputBoxBlue');
+      $inputBox2.textContent = '영문 숫자 특수문자를 포함해주세요';
+      $inputBox3.textContent = '영문 숫자 특수문자를 포함해주세요';
+      return false
+    }
+
+    if (!isIncludes(passwordValue, number)) {
+      $inputBox2.classList.add('inputBoxRed');
+      $inputBox3.classList.add('inputBoxRed');
+      $inputBox2.classList.remove('inputBoxBlue');
+      $inputBox3.classList.remove('inputBoxBlue');
+      $inputBox2.textContent = '영문 숫자 특수문자를 포함해주세요';
+      $inputBox3.textContent = '영문 숫자 특수문자를 포함해주세요';
+      return false
+    }
+
+    if (!isIncludes(passwordValue, alphabet)) {
+      $inputBox2.classList.add('inputBoxRed');
+      $inputBox3.classList.add('inputBoxRed');
+      $inputBox2.classList.remove('inputBoxBlue');
+      $inputBox3.classList.remove('inputBoxBlue');
+      $inputBox2.textContent = '영문 숫자 특수문자를 포함해주세요';
+      $inputBox3.textContent = '영문 숫자 특수문자를 포함해주세요';
+      return false
+    }
+    if (!isNotIncludes(passwordValue, all)) {
+      $inputBox2.classList.add('inputBoxRed');
+      $inputBox3.classList.add('inputBoxRed');
+      $inputBox2.classList.remove('inputBoxBlue');
+      $inputBox3.classList.remove('inputBoxBlue');
+      $inputBox2.textContent = '포함되면 안되는 문자가 있습니다';
+      $inputBox3.textContent = '포함되면 안되는 문자가 있습니다';
+      return false;
+    }
+
+    return true;
+  }
+
+  function isConfirmEmail(emailValue) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const number = '1234567890';
+    const specialCharacter = '@.';
+    const all = alphabet + number + specialCharacter;
+
+    if (!isIncludes(emailValue, alphabet)) {
+      $inputBox4.classList.remove('inputBoxBlue');
+      $inputBox4.classList.add('inputBoxRed');
+      $inputBox4.textContent = '이메일 형식으로 입력하세요';
+      return false
+    }
+
+    if (!isIncludes(emailValue, number)) {
+      $inputBox4.classList.remove('inputBoxBlue');
+      $inputBox4.classList.add('inputBoxRed');
+      $inputBox4.textContent = '이메일 형식으로 입력하세요';
+      return false
+    }
+
+    if (!isIncludes(emailValue, specialCharacter)) {
+      $inputBox4.classList.remove('inputBoxBlue');
+      $inputBox4.classList.add('inputBoxRed');
+      $inputBox4.textContent = '이메일 형식으로 입력하세요';
+      return false
+    }
+
+    if (!isNotIncludes(emailValue, all)) {
+      $inputBox4.classList.remove('inputBoxBlue');
+      $inputBox4.classList.add('inputBoxRed');
+      $inputBox4.textContent = '포함되면 안되는 문자가 있습니다';
+      return false;
+    }
+    return true;
+  }
+
+  function isConfirmBirth(birthValue) {
+    const number = '1234567890';
+
+    if (birthValue.length !== 6) {
+      $inputBox5.classList.remove('inputBoxBlue');
+      $inputBox5.classList.add('inputBoxRed');
+      $inputBox5.textContent = '6글자 숫자만 가능';
+      return false
+    }
+
+    if (!isIncludes(birthValue, number)) {
+      $inputBox5.classList.remove('inputBoxBlue');
+      $inputBox5.classList.add('inputBoxRed');
+      $inputBox5.textContent = '숫자가 아닙니다';
+      return false;
+    }
+
+    return true;
+  }
+
+  // 회원가입 버튼 클릭시 해당 함수 동작
+  function isSignUp() {
+
+    const id = isConfirmId($sign_up_id.value);
+    const password = isConfirmPassword($signUpPassword.value);
+    const passwordConfirm = isConfirmPassword($signUpPasswordConfirm.value);
+    const email = isConfirmEmail($signUpEmail.value);
+    const birth = isConfirmBirth($signUpBirth.value)
+    let flag = false;
+
+    if (id) {
+      $inputBox6.textContent = '사용가능한 아이디입니다';
+      $inputBox6.classList.remove('inputBoxRed');
+      $inputBox6.classList.add('inputBoxBlue');
+      flag = true;
+    }
+    flag = false
+    if (password) {
+      $inputBox7.textContent = '사용가능한 패스워드입니다';
+      $inputBox7.classList.remove('inputBoxRed');
+      $inputBox7.classList.add('inputBoxBlue');
+      flag = true;
+    }
+    flag = false
+    if (passwordConfirm) {
+      $inputBox8.textContent = '사용가능한 패스워드입니다';
+      $inputBox8.classList.remove('inputBoxRed');
+      $inputBox8.classList.add('inputBoxBlue');
+      flag = true;
+    }
+    flag = false
+    if (email) {
+      $inputBox9.textContent = '맞는 이메일 형식입니다';
+      $inputBox9.classList.remove('inputBoxRed');
+      $inputBox9.classList.add('inputBoxBlue');
+      flag = true;
+    }
+    flag = false
+    if (birth) {
+      $inputBox10.textContent = '알맞는 형식의 생일입니다';
+      $inputBox10.classList.remove('inputBoxRed');
+      $inputBox10.classList.add('inputBoxBlue');
+      flag = true;
+    }
+
+    if ($signUpPassword.value !== $signUpPasswordConfirm.value) {
+      $inputBox2.classList.remove('inputBoxBlue');
+      $inputBox3.classList.remove('inputBoxBlue');
+      $inputBox2.classList.add('inputBoxRed');
+      $inputBox3.classList.add('inputBoxRed');
+      $inputBox2.textContent = '비밀번호와 비밀번호 확인을 동일하게 해주세요';
+      $inputBox3.textContent = '비밀번호와 비밀번호 확인을 동일하게 해주세요';
+      return false;
+    }
+
+    if (flag) {
+      console.log('회원가입완료');
+    }
+
+    return flag;
+
+  }
+
+
+  //인풋박스 에 벨류값 들어올때
+  $sign_up_id.addEventListener('keyup', (event) => {
+    event.preventDefault();
+    isSignUp()
+  })
+
+  $signUpPassword.addEventListener('keyup', (event) => {
+    event.preventDefault();
+    isSignUp()
+  })
+
+  $signUpPasswordConfirm.addEventListener('keyup', (event) => {
+    event.preventDefault();
+    isSignUp()
+  })
+
+  $signUpEmail.addEventListener('keyup', (event) => {
+    event.preventDefault();
+    isSignUp()
+  })
+
+  $signUpBirth.addEventListener('keyup', (event) => {
+    event.preventDefault();
+    isSignUp()
+  })
+
+  // 회원가입 버튼 클릭시
+  $sign_up_form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    isSignUp();
+  })
+
+</script>
+
+<script src="../js/sign_in.js"></script>
+</body>
+</html>

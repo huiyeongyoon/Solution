@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <link rel="stylesheet" href="../css/sign_in.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+</header>
+<div id="logo">
+</div>
+<section id="container">
+  <h2>로그인</h2>
+  <form class="loginCheck" action="index.html" method="post" name="loginCheck">
+    <ul>
+      <li><input class="login_id" name="login_id" type="text" placeholder="아이디" title="아이디입력"></li>
+      <li><input class="login_password" name="login_password" type="password" placeholder="비밀번호" title="비밀번호입력"></li>
+      <li><input id="chk_id_saved" type="checkbox" value="chk_id_saved" ><label for="chk_id_saved" >아이디저장</label> </li>
+      <li><input id="Keep_me_signed_in"  type="checkbox" value="Keep_me_signed_in" ><label for="Keep_me_signed_in">자동로그인</label> </li>
+      <li><button type=submit class="big_btn">로그인</button></li>
+      <li><img class="kakao_btn" src="../image/kakao_sign_up_btn.png" alt=""></li>
+      <li><img class="naver_btn" src="../image/naver_sign_up_btn.png" alt=""></li>
+    </ul>
+  </form>
+  <div>
+    <ul>
+      <li><a href="#">회원가입</a></li>
+      <li><a href="#">아이디 찾기</a></li>
+      <li><a href="#">비밀번호 찾기</a></li>
+    </ul>
+  </div>
+  <a href="">비회원 주문조회</a>
+</section>
+<script>
+  const $login = document.querySelector('.loginCheck');
+  const $loginId = document.querySelector('.login_id');
+  const $loginPassword = document.querySelector('.login_password');
+  const $chkIdSaved = document.querySelector('input[value = chk_id_saved]');
+  const $KeepMeSignedIn = document.querySelector('input[value = Keep_me_signed_in]');
+  const $kakaoSignUp = document.querySelector('.kakao_btn');
+  const $naverSignUp = document.querySelector('.naver_btn');
+
+
+  // 자동로그인
+  // 쿠키값으로 체크박스 확인
+  // chk_id_saved
+
+  const normalSign_up = () => {
+    if ($chkIdSaved) {
+      if ($chkIdSaved.checked) {
+        setCookie('id', $loginId.value);
+      }
+    }
+
+    if ($KeepMeSignedIn){
+      if ($KeepMeSignedIn.checked) {
+        setCookie('id', $loginId.value);
+        setCookie('password', $loginPassword.value);
+      }
+    }
+
+    // 1. value 는 문자열로 들어온다
+    if ($loginId.value === 'name2960' && $loginPassword.value === '12345') {
+      console.log('로그인 성공')
+    } else {
+      alert('아이디 또는 비밀번호가 틀립니다');
+      deleteCookie('id', $loginId.value);
+      deleteCookie('password', $loginPassword.value);
+    }
+
+  }
+
+  const setCookie = (key, value) => {
+    const date = new Date();
+    date.setDate(date.getDate() + 7)
+
+    let setCookie = '';
+    setCookie += key + '=' + value+ ';';
+    setCookie += 'Expires=' + date.toUTCString();
+    document.cookie = setCookie;
+    alert(document.cookie);
+  }
+
+  function getCookie(key) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + key.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+
+  const deleteCookie = (key, value) => {
+    const date = new Date();
+    date.setDate(date.getDate() - 1)
+
+    let setCookie = '';
+    setCookie += key + '=' + value+ ';';
+    setCookie += 'Expires=' + date.toUTCString();
+
+    document.cookie = setCookie;
+  }
+  if (getCookie('id')) {
+    $loginId.value = getCookie('id');
+  }
+  if (getCookie('password')) {
+    $loginPassword.value = getCookie('password');
+  }
+
+  $login.addEventListener('submit' , (event) => {
+    event.preventDefault();
+    normalSign_up();
+    console.log(document.cookie);
+
+  })
+
+  $kakaoSignUp.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('카카오')
+  })
+
+  $naverSignUp.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('네이버');
+  })
+
+</script>
+<script src="../js/sign_in.js"></script>
+</body>
+</html>
